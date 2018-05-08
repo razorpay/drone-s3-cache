@@ -127,6 +127,11 @@ func main() {
 			Usage:  "s3 secret key",
 			EnvVar: "PLUGIN_SECRET_KEY,CACHE_S3_SECRET_KEY,AWS_SECRET_ACCESS_KEY",
 		},
+		cli.StringFlag{
+			Name:   "region",
+			Usage:  "s3 region",
+			EnvVar: "PLUGIN_REGION,CACHE_S3_REGION,AWS_REGION",
+		},
 	}
 
 	if err := app.Run(os.Args); err != nil {
@@ -289,6 +294,7 @@ func s3Storage(c *cli.Context) (storage.Storage, error) {
 		Endpoint: endpoint,
 		Access:   access,
 		Secret:   secret,
+		Region:   region,
 		UseSSL:   useSSL,
 	})
 }
